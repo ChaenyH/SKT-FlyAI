@@ -1,3 +1,5 @@
+// 앱의 진입점입니다. MaterialApp을 초기화하고, 앱의 전역 상태 및 라우팅을 설정합니다.
+
 import 'package:flutter/material.dart';
 
 void main() {
