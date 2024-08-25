@@ -19,7 +19,7 @@ class DraggableDateInfoPanel extends StatelessWidget {
       minChildSize: 0.12,
       maxChildSize: 0.98,
       snap: true, // 스냅 설정
-      snapSizes: [0.12, 0.4, 0.98], // 스냅될 크기 비율 설정
+      snapSizes: [0.12, 0.5, 0.98], // 스냅될 크기 비율 설정
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
