@@ -46,22 +46,28 @@ import 'package:poopy/views/widgets/status_card_widget.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('HomeScreen'),
-      ),
       body: Column(
         children: [
           // 고정된 프로필 위젯
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.only(
+              top: contextHeight * 0.6,
+              bottom: contextHeight * 0.2,
+              left: contextWidth * 0.5,
+            ),
             child: DogProfileWidget(),
           ),
           // 스크롤 가능한 영역
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: contextWidth * 0.5
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
