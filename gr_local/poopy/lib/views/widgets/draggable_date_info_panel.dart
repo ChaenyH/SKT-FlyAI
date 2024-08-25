@@ -11,10 +11,15 @@ class DraggableDateInfoPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
     return DraggableScrollableSheet(
       initialChildSize: 0.4,
       minChildSize: 0.12,
       maxChildSize: 0.98,
+      snap: true, // 스냅 설정
+      snapSizes: [0.12, 0.4, 0.98], // 스냅될 크기 비율 설정
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(
           decoration: BoxDecoration(
@@ -29,13 +34,31 @@ class DraggableDateInfoPanel extends StatelessWidget {
           ),
           child: SingleChildScrollView(
             controller: scrollController,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SelectedDateInformation(
-                date: selectedDate,
-                events: events,
-              ),
-            ),
+            child: Column(
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    margin: EdgeInsets.only(top: contextHeight * 0.2),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: contextHeight * 0.1,
+                    horizontal: contextWidth * 0.2,
+                  ),
+                  child: SelectedDateInformation(
+                    date: selectedDate,
+                    events: events,
+                  ),
+                ),
+              ],
+            )
           ),
         );
       },
@@ -48,10 +71,10 @@ class SelectedDateInformation extends StatelessWidget {
   final List<String> events;
 
   const SelectedDateInformation({
-    Key? key,
+    super.key,
     required this.date,
     required this.events,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +89,7 @@ class SelectedDateInformation extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 300,  // Expanded 대신 고정 높이 설정
+          height: 300,
           child: events.isNotEmpty
               ? ListView.builder(
             itemCount: events.length,

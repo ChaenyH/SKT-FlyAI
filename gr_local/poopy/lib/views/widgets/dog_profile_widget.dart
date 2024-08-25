@@ -8,7 +8,7 @@ class DogProfileWidget extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: AssetImage('assets/dog_avatar.png'), // 이미지 변경
+          backgroundImage: AssetImage('assets/images/dog_profile_1.png'), // 이미지 변경
           radius: 30,
         ),
         SizedBox(width: contextWidth * 0.4),
