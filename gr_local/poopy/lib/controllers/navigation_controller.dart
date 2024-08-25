@@ -22,6 +22,11 @@ class NavigationController {
     Navigator.pushReplacementNamed(context, '/home');
   }
 
+  // 카메라 화면으로 이동
+  void navigateToCamera(BuildContext context) {
+    Navigator.pushNamed(context, '/camera');
+  }
+
   // 챗봇 화면으로 이동
   void navigateToChatbot(BuildContext context) {
     Navigator.pushNamed(context, '/chatbot');

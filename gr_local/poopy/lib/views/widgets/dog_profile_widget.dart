@@ -3,16 +3,18 @@ import 'package:flutter/material.dart';
 class DogProfileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
     return Row(
       children: [
         CircleAvatar(
           backgroundImage: AssetImage('assets/dog_avatar.png'), // 이미지 변경
           radius: 30,
         ),
-        SizedBox(width: 20),
+        SizedBox(width: contextWidth * 0.4),
         Text(
-          'Bella',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          '오뎅이',
+          style: TextStyle(fontSize: contextWidth * 0.5, fontWeight: FontWeight.bold),
         ),
       ],
     );

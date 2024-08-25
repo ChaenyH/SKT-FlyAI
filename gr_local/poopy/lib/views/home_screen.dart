@@ -5,6 +5,8 @@ import 'package:poopy/views/widgets/dog_profile_widget.dart';
 import 'package:poopy/views/widgets/expandable_fab.dart';
 import 'package:poopy/views/widgets/status_card_widget.dart';
 
+import '../controllers/navigation_controller.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -18,15 +20,9 @@ class HomeScreen extends StatelessWidget {
           children: [
             DogProfileWidget(),  // 프로필 위젯
             SizedBox(height: 20),
-            StatusCardWidget(title: 'Today my dog\'s status'),
+            StatusCardWidget(),
             SizedBox(height: 10),
-            HomeActionButtonWidget(
-              title: 'Take Photo',
-              icon: Icons.camera_alt,
-              onTap: () {
-                Navigator.pushNamed(context, '/camera');
-              },
-            ),
+            HomeCameraButtonWidget(),
             SizedBox(height: 20),
             CardNewsWidget(),
           ],

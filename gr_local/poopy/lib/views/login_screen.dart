@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   _navController.navigateToHome(context);
                 },
-                child: Text('Home'),
+                child: Text('Go Home'),
               ),
             ),
           ],
