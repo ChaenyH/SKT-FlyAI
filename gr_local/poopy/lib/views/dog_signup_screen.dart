@@ -9,7 +9,6 @@ class DogSignUpScreen extends StatefulWidget {
 }
 
 class _DogSignUpScreenState extends State<DogSignUpScreen> {
-  final NavigationController _navController = NavigationController();
   final TextEditingController dogNameController = TextEditingController();
   final TextEditingController dogAgeController = TextEditingController();
   bool isDogSpayed = false;
@@ -38,7 +37,7 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        _navController.navigateToSignup(context);
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       child: Text('skip'),
                     ),

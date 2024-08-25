@@ -8,7 +8,6 @@ import 'views/home_screen.dart';
 import 'views/calendar_screen.dart';
 import 'views/camera_screen.dart';
 import 'views/mypage_screen.dart';
-import 'views/photo_preview_and_upload_screen.dart';
 import 'views/chatbot_dialog.dart';
 
 class Routes {

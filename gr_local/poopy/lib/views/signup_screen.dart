@@ -18,6 +18,12 @@ class UserSignUpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sign Up'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),  // 뒤로가기 버튼 모양
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/login');
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(50.0),
