@@ -1,5 +1,61 @@
-//  네비게이션 경로를 정의하고 앱 내 모든 화면 전환의 중앙 지점 역할을 합니다.
+import 'package:flutter/material.dart';
+import 'package:poopy/views/card_news_screen.dart';
+import 'package:poopy/views/dog_signup_screen.dart';
+import 'package:poopy/views/login_screen.dart';
+import 'package:poopy/views/onboarding_screen.dart';
+import 'package:poopy/views/signup_screen.dart';
+import 'views/home_screen.dart';
+import 'views/calendar_screen.dart';
+import 'views/camera_screen.dart';
+import 'views/mypage_screen.dart';
+import 'views/photo_preview_and_upload_screen.dart';
+import 'views/chatbot_dialog.dart';
 
-// 네비게이션 경로(라우트)를 중앙에서 정의하고 관리합니다.
-// 모든 화면의 경로(URL)를 설정하고,
-// 이 경로에 따라 어떤 화면이 렌더링될지(해당 화면의 빌더)를 정의합니다.
+class Routes {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case '/':
+        return MaterialPageRoute(builder: (_) => OnboardingScreen());
+
+      case '/login':
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+      case '/signup':
+        return MaterialPageRoute(builder: (_) => UserSignUpScreen());
+      case '/dog_signup':
+        return MaterialPageRoute(builder: (_) => DogSignUpScreen());
+
+      case '/home':
+        return MaterialPageRoute(builder: (_) => HomeScreen());
+      case '/cardnews':
+        return MaterialPageRoute(builder: (_) => CardNewsScreen());
+
+      case '/calendar':
+        return MaterialPageRoute(builder: (_) => CalendarScreen());
+
+      case '/camera':
+        return MaterialPageRoute(builder: (_) => CameraScreen());
+      case '/photo_preview':
+        final bool needChat = settings.arguments as bool;
+        return MaterialPageRoute(
+          builder: (_) => PhotoPreviewAndUploadScreen(),
+        );
+      case '/chatbot':
+        final String message = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => ChatbotDialog(message: message),
+        );
+
+      case '/mypage':
+        return MaterialPageRoute(builder: (_) => MyPageScreen());
+
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          ),
+        );
+    }
+  }
+}
