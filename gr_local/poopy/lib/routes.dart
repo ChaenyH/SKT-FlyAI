@@ -34,11 +34,6 @@ class Routes {
 
       case '/camera':
         return MaterialPageRoute(builder: (_) => CameraScreen());
-      case '/photo_preview':
-        final bool needChat = settings.arguments as bool;
-        return MaterialPageRoute(
-          builder: (_) => PhotoPreviewAndUploadScreen(),
-        );
       case '/chatbot':
         final String message = settings.arguments as String;
         return MaterialPageRoute(

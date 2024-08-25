@@ -32,7 +32,7 @@ class StatusCardWidget extends StatelessWidget {
                   horizontal: contextWidth * 0.6,
               ),
               child: Text(
-                '오뎅이의 8월 23일 최근 건강 확인',
+                '오뎅이의 8월 25일 최근 건강 확인',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -63,44 +63,52 @@ class StatusCardWidget extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 5,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: contextHeight * 0.1,
-                                horizontal: contextWidth * 0.3
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.yellow.shade700,
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            child: Text(
-                              '주의',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: contextWidth * 0.5,
+                            bottom: contextHeight * 0.2
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: contextHeight * 0.1,
+                                  horizontal: contextWidth * 0.3
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.yellow.shade700,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: Text(
+                                '주의',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: contextHeight * 0.15),
-                          Text(
-                            '매우 딱딱하고 건조한 변',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
+                            SizedBox(height: contextHeight * 0.15),
+                            Text(
+                              '매우 딱딱하고 건조한 변',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: contextWidth * 0.37,
+                                fontWeight: FontWeight.w500
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            '\n주로 흑갈색을 띠며,\n피가 조금 묻어나왔어요.',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 14.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          )
-                        ],
+                            Text(
+                              '\n주로 흑갈색을 띠며,\n피가 조금 묻어나왔어요.',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: contextWidth * 0.35,
+                              ),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ],
