@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poopy/controllers/dog_controller.dart';
 import '../controllers/navigation_controller.dart';
-import '../models/api_service.dart';
+import '../services/api_service.dart';
 
 class DogSignUpScreen extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:poopy/views/photo_preview_and_upload_screen.dart';
 import 'package:poopy/views/widgets/camera_widgets.dart';
 
 class CameraScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 // 강아지 관련 로직을 처리하는 컨트롤러입니다.
 
 import 'package:flutter/material.dart';
-import '../models/api_service.dart';
+import '../services/api_service.dart';
 import '../models/dog_model.dart';
 import 'navigation_controller.dart';
 

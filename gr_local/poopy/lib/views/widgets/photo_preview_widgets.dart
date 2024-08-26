@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import '../chatbot_dialog.dart';
 
 class PhotoPreviewAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
-    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
 
     return AppBar(
       backgroundColor: Colors.black,
@@ -61,10 +61,42 @@ class PhotoPreviewImage extends StatelessWidget {
   }
 }
 
+class UploadService {
+  Future<bool> uploadImage(String imagePath) async {
+    // 여기에 업로드 로직을 추가하세요.
+    // 예: http POST 요청으로 이미지를 서버에 업로드.
+    // 업로드가 성공하면 true 반환, 실패하면 false 반환.
+    return true; // 예시로 성공했다고 가정.
+  }
+}
+
 class UploadButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const UploadButton({required this.onPressed,});
+  UploadButton({required this.onPressed,});
+
+  final UploadService _uploadService = UploadService();
+
+  Future<void> _handleUpload(BuildContext context) async {
+    // 이미지 업로드 로직 실행
+    bool isUploaded = await _uploadService.uploadImage('your_image_path');
+
+    if (isUploaded) {
+      // 캘린더 화면으로 이동
+      Navigator.pushReplacementNamed(context, '/calendar');
+
+      // 챗봇이 필요한 상황이라면 챗봇 다이얼로그 띄우기
+      bool isChatbotNeeded = true; // 여기에 챗봇이 필요한 조건을 추가하세요.
+      if (isChatbotNeeded) {
+        showCustomDialog(context);
+      }
+    } else {
+      // 업로드 실패 시 에러 메시지를 표시하거나 다른 처리를 합니다.
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Image upload failed. Please try again.')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +111,7 @@ class UploadButton extends StatelessWidget {
         width: double.infinity,
         height: contextHeight * 0.7,
         child: ElevatedButton.icon(
-          onPressed: onPressed,
+          onPressed: () => _handleUpload(context),
           icon: Icon(Icons.cloud_upload),
           label: Text(
             'Upload',

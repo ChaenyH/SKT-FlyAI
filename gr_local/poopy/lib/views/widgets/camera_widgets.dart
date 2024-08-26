@@ -1,7 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../photo_preview_and_upload_screen.dart';
 
 class CameraPreviewWidget extends StatefulWidget {

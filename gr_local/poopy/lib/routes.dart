@@ -27,17 +27,14 @@ class Routes {
         return MaterialPageRoute(builder: (_) => HomeScreen());
       case '/cardnews':
         return MaterialPageRoute(builder: (_) => CardNewsScreen());
+      // case '/chatlog':
+      //   return MaterialPageRoute(builder: (_) => ChatlogScreen());
 
       case '/calendar':
         return MaterialPageRoute(builder: (_) => CalendarScreen());
 
       case '/camera':
         return MaterialPageRoute(builder: (_) => CameraScreen());
-      case '/chatbot':
-        final String message = settings.arguments as String;
-        return MaterialPageRoute(
-          builder: (_) => ChatbotDialog(message: message),
-        );
 
       case '/mypage':
         return MaterialPageRoute(builder: (_) => MyPageScreen());

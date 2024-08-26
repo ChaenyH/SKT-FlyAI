@@ -5,8 +5,8 @@
 
 import 'dart:convert';  // JSON 인코딩 및 디코딩을 위해 필요
 import 'package:http/http.dart' as http;  // HTTP 요청을 위해 필요
-import 'user_model.dart';  // UserModel을 사용하기 위해 필요
-import 'dog_model.dart';  // DogModel을 사용하기 위해 필요
+import '../models/user_model.dart';  // UserModel을 사용하기 위해 필요
+import '../models/dog_model.dart';  // DogModel을 사용하기 위해 필요
 
 class ApiService {
   static const String baseUrl = 'http://223.194.44.32:8000/';

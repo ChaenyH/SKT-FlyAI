@@ -2,7 +2,7 @@
 // 예를 들어, 로그인, 회원가입, 사용자 데이터 처리 등의 기능이 포함됩니다.
 
 import 'package:flutter/material.dart';
-import '../models/api_service.dart';
+import '../services/api_service.dart';
 import '../models/user_model.dart';
 import 'navigation_controller.dart';
 

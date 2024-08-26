@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../controllers/user_controller.dart';
 import '../controllers/navigation_controller.dart';
-import '../models/api_service.dart';
+import '../services/api_service.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
