@@ -47,7 +47,7 @@ class DraggableDateInfoPanel extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
+                Container(
                   padding: EdgeInsets.symmetric(
                     vertical: contextHeight * 0.1,
                     horizontal: contextWidth * 0.2,
@@ -78,33 +78,60 @@ class SelectedDateInformation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
+    return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            '${date.day} ${_monthName(date.month)} ${date.year}',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: contextWidth * 0.5,
+            vertical: contextHeight * 0.2,
           ),
-        ),
-        SizedBox(
-          height: 300,
-          child: events.isNotEmpty
-              ? ListView.builder(
-            itemCount: events.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(events[index]),
-                subtitle: Text('Details about ${events[index]}'),
-              );
-            },
-          )
-          : Center(
-            child: Text(
-              'No events for this day.',
-              style: TextStyle(color: Colors.grey),
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 16.0),
+                  child: Text(
+                    '${date.day} ${_monthName(date.month)} ${date.year}',
+                    style: TextStyle(
+                      fontSize: contextWidth * 0.5,
+                      fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: contextHeight * 7.5, // 높이 조정
+                child: events.isNotEmpty
+                    ? ListView.builder(
+                  itemCount: events.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 8.0),
+                      decoration: BoxDecoration(
+                        color: index % 2 == 0
+                            ? Color(0xFFC9E8FF) // 첫 번째 색상
+                            : Color(0xFFFFC9C9), // 두 번째 색상
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      child: ListTile(
+                        title: Text(events[index]),
+                        subtitle: Text('Details about ${events[index]}'),
+                      ),
+                    );
+                  },
+                )
+                : Center(
+                  child: Text(
+                    'No events for this day.',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
