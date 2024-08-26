@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:poopy/views/chatlog_screen.dart';
 import 'package:poopy/views/dog_signup_screen.dart';
-import 'package:poopy/views/login_screen.dart';
 import 'package:poopy/views/onboarding_screen.dart';
 import 'package:poopy/views/user_signup_screen.dart';
 import 'views/home_screen.dart';
 import 'views/calendar_screen.dart';
 import 'views/camera_screen.dart';
 import 'views/mypage_screen.dart';
-import 'views/chatbot_dialog.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -21,8 +20,8 @@ class Routes {
 
       case '/home':
         return MaterialPageRoute(builder: (_) => HomeScreen());
-      // case '/chatlog':
-      //   return MaterialPageRoute(builder: (_) => ChatlogScreen());
+      case '/chatlog':
+        return MaterialPageRoute(builder: (_) => ChatLogScreen());
 
       case '/calendar':
         return MaterialPageRoute(builder: (_) => CalendarScreen());

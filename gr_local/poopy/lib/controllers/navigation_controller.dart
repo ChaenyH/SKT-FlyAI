@@ -34,7 +34,13 @@ class NavigationController {
 
   // 챗봇 화면으로 이동
   void navigateToChatbot(BuildContext context) {
-    Navigator.pushNamed(context, '/chatbot');
+    Navigator.pushReplacementNamed(context, '/chatbot');
+  }
+
+
+  // 챗봇 화면으로 이동
+  void navigateToChatlog(BuildContext context) {
+    Navigator.pushNamed(context, '/chatlog');
   }
 
   // 강아지 회원가입 화면으로 이동

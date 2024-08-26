@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../controllers/navigation_controller.dart';
+
 class BadgesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -76,43 +78,51 @@ class BadgesWidget extends StatelessWidget {
 }
 
 class ChatLogWidget extends StatelessWidget {
+  final NavigationController _navController = NavigationController();
+
   @override
   Widget build(BuildContext context) {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
     final double contextHeight = MediaQuery.of(context).size.height * 0.1;
 
-    return Container(
-      padding: EdgeInsets.all(contextWidth * 0.5),
-      width: double.infinity,
-      height: contextHeight * 1,
-      decoration: BoxDecoration(
-        color: Colors.purple[200],
-        borderRadius: BorderRadius.circular(20.0),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.8),
-          width: contextWidth * 0.1,
+    return GestureDetector(
+      onTap: () {
+        _navController.navigateToChatlog(context);
+      },
+      child: Container(
+        padding: EdgeInsets.all(contextWidth * 0.5),
+        width: double.infinity,
+        height: contextHeight * 1,
+        decoration: BoxDecoration(
+          color: Colors.purple[200],
+          borderRadius: BorderRadius.circular(20.0),
+          border: Border.all(
+            color: Colors.white.withOpacity(0.8),
+            width: contextWidth * 0.1,
+          ),
         ),
-      ),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.chat, color: Colors.white,),
-            SizedBox(width: contextWidth * 0.3,),
-            Text(
-              '챗 로그 보러 가기',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.chat, color: Colors.white),
+              SizedBox(width: contextWidth * 0.3),
+              Text(
+                '챗 로그 보러 가기',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
 
 class MiniGalleryWidget extends StatelessWidget {
   final List<String> imagePaths = [
