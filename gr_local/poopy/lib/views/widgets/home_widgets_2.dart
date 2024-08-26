@@ -11,7 +11,7 @@ class BadgesWidget extends StatelessWidget {
       width: double.infinity,
       height: contextHeight * 1.8,
       decoration: BoxDecoration(
-        color: Colors.purple[200],
+        color: Color(0xFFCE94D8).withOpacity(0.8),
         borderRadius: BorderRadius.circular(16.0),
         border: Border.all(
           color: Colors.white.withOpacity(0.8),

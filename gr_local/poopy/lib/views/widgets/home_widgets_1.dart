@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../controllers/navigation_controller.dart';
+import '../card_news_screen.dart';
 
 class StatusCardWidget extends StatelessWidget {
   @override
@@ -13,7 +14,7 @@ class StatusCardWidget extends StatelessWidget {
         height: contextHeight * 3,
         // padding: EdgeInsets.all(16.0), // 부모 컨테이너의 패딩
         decoration: BoxDecoration(
-          color: Colors.deepPurple.shade200, // 배경색
+          color: Color(0xFFCE94D8).withOpacity(0.5),
           borderRadius: BorderRadius.circular(16.0), // 모서리 둥글게
           boxShadow: [
             BoxShadow(
@@ -49,7 +50,7 @@ class StatusCardWidget extends StatelessWidget {
                   horizontal: contextWidth * 0.8,
                 ), // 내부 패딩
                 decoration: BoxDecoration(
-                  color: Colors.purple.shade100,
+                  color: Color(0xFFCE94D8).withOpacity(0.7),
                   borderRadius: BorderRadius.circular(12.0),
                 ),
                 child: Row(
@@ -178,12 +179,19 @@ class HomeCameraButtonWidget extends StatelessWidget {
 
 
 class CardNewsWidget extends StatelessWidget {
+  final List<String> imagePaths = [
+    'assets/images/cardnews1.jpg',
+    'assets/images/cardnews2.jpg',
+    'assets/images/cardnews3.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final double contextHeight = MediaQuery.of(context).size.height * 0.1;
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: EdgeInsets.symmetric(
@@ -199,17 +207,42 @@ class CardNewsWidget extends StatelessWidget {
             ),
           ),
         ),
-        Card(
-            child: Container(
-              height: contextHeight * 2.5,
-              child: ListTile(
-                leading: Icon(Icons.article),
-                title: Text('Card News'),
-                onTap: () {
-                  Navigator.pushNamed(context, '/cardnews');
-                },
-              ),
-            )
+        Container(
+          height: contextHeight * 2.5,  // 이미지 슬라이더의 높이
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.8),
+            borderRadius: BorderRadius.circular(16.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.8),
+              width: contextWidth * 0.1,
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),  // 카드의 둥근 모서리
+            child: PageView.builder(
+              itemCount: imagePaths.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CardNewsScreen(index: index),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(imagePaths[index]),
+                        fit: BoxFit.fitHeight,  // 이미지를 높이에 맞춰서 조절
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ],
     );

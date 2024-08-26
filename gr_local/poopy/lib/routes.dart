@@ -25,8 +25,6 @@ class Routes {
 
       case '/home':
         return MaterialPageRoute(builder: (_) => HomeScreen());
-      case '/cardnews':
-        return MaterialPageRoute(builder: (_) => CardNewsScreen());
       // case '/chatlog':
       //   return MaterialPageRoute(builder: (_) => ChatlogScreen());
 
