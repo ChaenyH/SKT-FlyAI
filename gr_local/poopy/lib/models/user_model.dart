@@ -1,33 +1,31 @@
-// 사용자 데이터 모델을 정의합니다.
-
 // lib/models/user_model.dart
 
-class UserModel {
+import 'dog_model.dart';
+
+class User {
   final int userId;
   final String email;
-  final String accessToken;
+  final Dog? dogInfo; // 개 정보를 포함할 수 있도록 Dog 모델을 참조
 
-  UserModel({
+  User({
     required this.userId,
     required this.email,
-    required this.accessToken,
+    this.dogInfo,
   });
 
-  // JSON 데이터를 UserModel 객체로 변환
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       userId: json['user_id'],
       email: json['email'],
-      accessToken: json['access_token'],
+      dogInfo: json['dog_info'] != null ? Dog.fromJson(json['dog_info']) : null,
     );
   }
 
-  // UserModel 객체를 JSON 데이터로 변환
   Map<String, dynamic> toJson() {
     return {
       'user_id': userId,
       'email': email,
-      'access_token': accessToken,
+      'dog_info': dogInfo?.toJson(),
     };
   }
 }

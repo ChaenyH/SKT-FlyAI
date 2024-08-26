@@ -11,8 +11,9 @@ void showCustomLoginDialog(BuildContext context) {
     barrierColor: Colors.black.withOpacity(0.5),  // 다이얼로그 외부의 반투명 배경
     builder: (_) => Center(
       child: Container(
+        height: contextHeight * 8,
         margin: EdgeInsets.symmetric(
-          vertical: contextHeight * 1.5,
+          // vertical: contextHeight * 1.5,
           horizontal: contextWidth * 0.5,
         ),
         decoration: BoxDecoration(
@@ -29,10 +30,7 @@ void showCustomLoginDialog(BuildContext context) {
             filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
             child: Scaffold(
               backgroundColor: Colors.transparent,
-              body: Container(
-                // padding: const EdgeInsets.all(16.0),
-                child: LoginScreen(),  // LoginScreen을 여기에 삽입
-              ),
+              body: LoginScreen(),  // LoginScreen을 여기에 삽입
             ),
           ),
         ),
@@ -55,25 +53,16 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: Colors.grey[200],
       body: Center(
         child: SingleChildScrollView(
-          child: Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.symmetric(
-              horizontal: contextWidth * 0.8,
-              vertical: contextHeight * 0.6,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 6.0,
-                  offset: Offset(0, 2),
-                ),
-              ],
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: contextWidth * 0.8,
+              right: contextWidth * 0.8,
+              top: contextHeight * 0.6,
+              bottom: MediaQuery.of(context).viewInsets.bottom + contextHeight * 0.5,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(
                   'assets/images/poopy_logo.png',
@@ -178,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

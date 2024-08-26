@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/views/dog_signup_screen.dart';
-import '../controllers/user_controller.dart';
+import '../controllers/api_service.dart';
 import '../controllers/navigation_controller.dart';
-import '../services/api_service.dart';
 
 class UserSignUpScreen extends StatefulWidget {
   @override
@@ -13,12 +11,43 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final NavigationController _navController = NavigationController();
-  final UserController userController = UserController(
-    apiService: ApiService(),
-    navigationController: NavigationController(),
-  );
+  final ApiService apiService = ApiService();
 
   bool _isPasswordVisible = false; // 비밀번호 표시 여부를 위한 상태 변수
+
+  Future<void> _showDogRegistrationDialog(BuildContext context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // 다이얼로그 바깥을 누르면 닫히지 않도록 설정
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            '강아지도 등록하시겠어요?',
+            style: TextStyle(fontSize: 16),
+            textAlign: TextAlign.center,
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('예',
+                  style: TextStyle(fontWeight: FontWeight.w700)
+              ),
+              onPressed: () {
+                Navigator.of(context).pop(); // 다이얼로그 닫기
+                _navController.navigateToDogSignup(context); // 강아지 등록 화면으로 이동
+              },
+            ),
+            TextButton(
+              child: Text('아니요'),
+              onPressed: () {
+                Navigator.of(context).pop(); // 다이얼로그 닫기
+                _navController.navigateToLogin(context); // 로그인 화면으로 이동
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,12 +122,21 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
               SizedBox(
                 width: double.infinity,  // 너비를 최대화
                 child: ElevatedButton(
-                  onPressed: () {
-                    userController.signUpUser(
-                      context,
-                      emailController.text,
-                      passwordController.text,
-                    );
+                  onPressed: () async {
+                    try {
+                      await apiService.signupUser(
+                        emailController.text,
+                        passwordController.text,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('회원가입이 성공적으로 완료되었습니다!')),
+                      );
+                      await _showDogRegistrationDialog(context);
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('회원가입에 실패했습니다. 다시 시도해주세요.\n$e')),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple.withOpacity(0.7),  // 버튼 색상
@@ -116,35 +154,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                     'Sign Up',
                     style: TextStyle(
                       fontSize: contextWidth * 0.5,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: contextHeight * 0.2),
-              SizedBox(
-                width: double.infinity,  // 너비를 최대화
-                child: ElevatedButton(
-                  onPressed: () {
-                    _navController.navigateToDogSignup(context);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFCE94D8).withOpacity(0.8),
-                    padding: EdgeInsets.symmetric(vertical: contextHeight * 0.1),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),  // 버튼 모서리 곡선
-                    ),
-                    textStyle: TextStyle(fontSize: contextWidth * 0.5),
-                    side: BorderSide(  // 테두리 설정
-                      color: Colors.white.withOpacity(0.9),  // 테두리 색상
-                      width: contextWidth * 0.05,  // 테두리 두께
-                    ),
-                  ),
-                  child: Text(
-                    '강아지 등록하기',
-                    style: TextStyle(
-                      fontSize: contextWidth * 0.35,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
@@ -177,7 +186,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: contextHeight * 0.5),
+              SizedBox(height: contextHeight * 1),
             ],
           ),
         ),

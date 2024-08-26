@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/controllers/dog_controller.dart';
 import '../controllers/navigation_controller.dart';
-import '../services/api_service.dart';
+import '../controllers/api_service.dart';
 
 class DogSignUpScreen extends StatefulWidget {
   @override
@@ -13,14 +12,10 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
   final TextEditingController dogAgeController = TextEditingController();
   bool isDogSpayed = false;
   bool isDogPregnant = false;
+  String? dogSex;  // 성별 변수 선언, 초기값은 null
 
-  // 성별 변수 선언
-  String? dogSex;  // null을 허용하여 선택되지 않은 초기 상태를 처리
-
-  final DogController dogController = DogController(
-    apiService: ApiService(),
-    navigationController: NavigationController(),
-  );
+  final ApiService apiService = ApiService();
+  final NavigationController navigationController = NavigationController();
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +153,7 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
               SizedBox(
                 width: double.infinity,  // 너비를 최대화
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     int dogAge = int.tryParse(dogAgeController.text) ?? 0;
 
                     if (dogSex == null) {
@@ -170,14 +165,27 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
                       return;
                     }
 
-                    dogController.signUpDog(
-                      context,
-                      dogNameController.text,
-                      dogAge,
-                      dogSex == 'Male' ? 1 : 2,  // 숫자로 변환하여 API에 전달
-                      isDogSpayed,
-                      isDogPregnant,
-                    );
+                    try {
+                      // API를 직접 호출하여 강아지 정보를 등록
+                      await apiService.signupDog(
+                        1, // 로그인된 사용자의 ID로 대체
+                        dogNameController.text,
+                        dogAge,
+                        dogSex == 'Male' ? 1 : 0,
+                        isDogSpayed,
+                        isDogPregnant,
+                      );
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('강아지 정보가 성공적으로 등록되었습니다!')),
+                      );
+                      Navigator.pop(context);
+
+                    } catch (e) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('강아지 등록에 실패했습니다. 다시 시도해주세요.')),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.purple.withOpacity(0.8),  // 버튼 색상
