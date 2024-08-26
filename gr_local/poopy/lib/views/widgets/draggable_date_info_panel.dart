@@ -15,7 +15,7 @@ class DraggableDateInfoPanel extends StatelessWidget {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
 
     return DraggableScrollableSheet(
-      initialChildSize: 0.4,
+      initialChildSize: 0.5,
       minChildSize: 0.12,
       maxChildSize: 0.98,
       snap: true, // 스냅 설정

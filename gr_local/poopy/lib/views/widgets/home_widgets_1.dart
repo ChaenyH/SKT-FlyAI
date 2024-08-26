@@ -36,7 +36,7 @@ class StatusCardWidget extends StatelessWidget {
                 '오뎅이의 8월 25일 최근 건강 확인',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 16.0,
+                  fontSize: contextWidth * 0.4,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -195,6 +195,7 @@ class CardNewsWidget extends StatelessWidget {
             "오뎅이 견주님을 위한 오늘의 정보",
             style: TextStyle(
               fontSize: contextWidth * 0.4,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

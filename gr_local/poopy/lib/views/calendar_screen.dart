@@ -38,8 +38,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
           children: [
             Column(
               children: [
-                CalendarWidget(
+                CustomCalendarWidget(
                   onDateChanged: _onDateChanged,
+                  imagesList: generateDummyImagesList(), // 임의 더미 데이터 사용
                 ),
                 // 여기에 선택된 날짜의 간단한 정보 등을 표시할 수 있음
               ],
