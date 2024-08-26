@@ -1,49 +1,12 @@
-// import 'package:flutter/material.dart';
-// import 'package:poopy/views/widgets/home_action_button_widget.dart';
-// import 'package:poopy/views/widgets/card_news_widget.dart';
-// import 'package:poopy/views/widgets/dog_profile_widget.dart';
-// import 'package:poopy/views/widgets/expandable_fab.dart';
-// import 'package:poopy/views/widgets/status_card_widget.dart';
-//
-// import '../controllers/navigation_controller.dart';
-//
-// class HomeScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('HomeScreen'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             DogProfileWidget(),  // 프로필 위젯
-//             SizedBox(height: 20),
-//             StatusCardWidget(),
-//             SizedBox(height: 10),
-//             HomeCameraButtonWidget(),
-//             SizedBox(height: 20),
-//             CardNewsWidget(),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: GlobalExpandableFab(), // 여기에 ExpandableFab 적용
-//     );
-//   }
-// }
-
-
-
-
 import 'package:flutter/material.dart';
-import 'package:poopy/views/widgets/home_action_button_widget.dart';
-import 'package:poopy/views/widgets/card_news_widget.dart';
 import 'package:poopy/views/widgets/dog_profile_widget.dart';
 import 'package:poopy/views/widgets/expandable_fab.dart';
-import 'package:poopy/views/widgets/status_card_widget.dart';
+import 'package:poopy/views/widgets/home_widgets_1.dart';
+import 'package:poopy/views/widgets/home_widgets_2.dart';
 
 class HomeScreen extends StatelessWidget {
+  final PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     final double contextHeight = MediaQuery.of(context).size.height * 0.1;
@@ -52,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // 고정된 프로필 위젯
+          // 상단에 고정된 DogProfileWidget
           Padding(
             padding: EdgeInsets.only(
               top: contextHeight * 0.6,
@@ -61,25 +24,46 @@ class HomeScreen extends StatelessWidget {
             ),
             child: DogProfileWidget(),
           ),
-          // 스크롤 가능한 영역
+          // 아래의 스크롤 가능한 PageView
           Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: contextWidth * 0.5
+            child: PageView(
+              controller: _pageController,
+              scrollDirection: Axis.vertical,
+              pageSnapping: true,
+              children: [
+                // 페이지 1
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: contextWidth * 0.5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: contextHeight * 0.1),
+                      StatusCardWidget(),
+                      SizedBox(height: contextHeight * 0.1),
+                      HomeCameraButtonWidget(),
+                      SizedBox(height: contextHeight * 0.3),
+                      CardNewsWidget(),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StatusCardWidget(),
-                    SizedBox(height: 10),
-                    HomeCameraButtonWidget(),
-                    SizedBox(height: 20),
-                    CardNewsWidget(),
-                    SizedBox(height: 300),
-                  ],
+                // 페이지 2
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: contextWidth * 0.5),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: contextHeight * 0.2),
+                      BadgesWidget(),
+                      SizedBox(height: contextHeight * 0.3),
+                      ChatLogWidget(),
+                      SizedBox(height: contextHeight * 0.3),
+                      MiniGalleryWidget(),
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         ],

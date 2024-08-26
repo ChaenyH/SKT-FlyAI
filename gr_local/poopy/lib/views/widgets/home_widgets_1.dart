@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../controllers/navigation_controller.dart';
 
 class StatusCardWidget extends StatelessWidget {
   @override
@@ -28,8 +29,8 @@ class StatusCardWidget extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
-                  vertical: contextHeight * 0.15,
-                  horizontal: contextWidth * 0.6,
+                vertical: contextHeight * 0.15,
+                horizontal: contextWidth * 0.6,
               ),
               child: Text(
                 '오뎅이의 8월 25일 최근 건강 확인',
@@ -93,9 +94,9 @@ class StatusCardWidget extends StatelessWidget {
                             Text(
                               '매우 딱딱하고 건조한 변',
                               style: TextStyle(
-                                color: Colors.white,
-                                fontSize: contextWidth * 0.37,
-                                fontWeight: FontWeight.w500
+                                  color: Colors.white,
+                                  fontSize: contextWidth * 0.37,
+                                  fontWeight: FontWeight.w500
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -118,6 +119,98 @@ class StatusCardWidget extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+
+class HomeActionButtonWidget extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  HomeActionButtonWidget({
+    required this.title,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: EdgeInsets.all(16.0), // 패딩 추가
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center, // 가로 방향 가운데 정렬
+            children: [
+              Icon(icon, size: 24.0), // 아이콘 크기
+              SizedBox(width: 8.0), // 아이콘과 텍스트 사이의 간격
+              Text(
+                title,
+                style: TextStyle(fontSize: 16.0),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeCameraButtonWidget extends StatelessWidget {
+  final NavigationController _navController = NavigationController();
+
+  @override
+  Widget build(BuildContext context) {
+    return HomeActionButtonWidget(
+      title: '사진 촬영하기',
+      icon: Icons.camera_alt,
+      onTap: () {
+        _navController.navigateToCamera(context);
+      },
+    );
+  }
+}
+
+
+
+class CardNewsWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.symmetric(
+            vertical: contextHeight * 0.1,
+            horizontal: contextWidth * 0.3,
+          ),
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            "오뎅이 견주님을 위한 오늘의 정보",
+            style: TextStyle(
+              fontSize: contextWidth * 0.4,
+            ),
+          ),
+        ),
+        Card(
+            child: Container(
+              height: contextHeight * 2.5,
+              child: ListTile(
+                leading: Icon(Icons.article),
+                title: Text('Card News'),
+                onTap: () {
+                  Navigator.pushNamed(context, '/cardnews');
+                },
+              ),
+            )
+        ),
+      ],
     );
   }
 }
