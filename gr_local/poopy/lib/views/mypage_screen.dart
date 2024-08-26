@@ -10,7 +10,7 @@ class MyPageScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('MyPageScreen'),
+        // title: Text('MyPageScreen'),
       ),
       body: Padding(
         padding: EdgeInsets.all(contextWidth * 0.5),

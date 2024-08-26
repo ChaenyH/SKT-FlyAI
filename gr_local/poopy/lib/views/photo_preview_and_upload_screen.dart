@@ -23,7 +23,7 @@ class PhotoPreviewAndUploadScreen extends StatelessWidget {
           UploadButton(
             onPressed: () {
               // Navigator.pop(context);
-              _navController.navigateToCalendar(context);
+              // _navController.navigateToCalendar(context);
             },
           ),
           SizedBox(height: contextHeight * 0.5),

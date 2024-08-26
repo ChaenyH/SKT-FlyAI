@@ -48,7 +48,7 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
         vertical: contextHeight * 0.1,
       ),
       decoration: BoxDecoration(
-        color: Colors.purple.shade200.withOpacity(0.8),
+        color: Color(0xFFCE94D8).withOpacity(0.7),
         borderRadius: BorderRadius.circular(12.0),
         border: Border.all(
           color: Colors.white.withOpacity(0.8),
@@ -103,7 +103,7 @@ class CalendarHeader extends StatelessWidget {
         children: [
           IconButton(
             icon: Icon(
-              Icons.arrow_back,
+              Icons.arrow_back_ios,
               size: contextHeight * 0.2,
               color: Colors.white,
             ),
@@ -119,7 +119,7 @@ class CalendarHeader extends StatelessWidget {
           ),
           IconButton(
             icon: Icon(
-              Icons.arrow_forward,
+              Icons.arrow_forward_ios,
               size: contextHeight * 0.2,
               color: Colors.white,
             ),
@@ -147,8 +147,8 @@ class DayLabels extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: contextWidth * 0.3,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                color: Colors.white.withOpacity(0.9),
               ),
             ),
           ),

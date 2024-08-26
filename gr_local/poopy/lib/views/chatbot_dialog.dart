@@ -47,15 +47,15 @@ class CustomDialog extends StatelessWidget {
                 child: ListView(
                   children: [
                     ChatMessageWidget(
-                      text: "안녕하세요! 무엇을 도와드릴까요?",
+                      text: "대변 색상은 녹색(#4a7c3a)이며, 브리스톨 지수는 Type 7로, 완전히 물 같은 설사입니다. 또한, 혈액은 존재하지 않습니다. 이러한 정보는 감염이나 식이 변화로 인한 장의 급격한 반응을 시사할 수 있습니다. 강아지가 최근에 새로운 음식을 먹었거나 외부에서 무엇인가를 섭취한 적이 있나요? 이 정보를 통해 강아지의 상태를 더 잘 이해하고 적절한 조치를 취하는 데 도움이 될 수 있습니다.",
                       isUserMessage: false,
                       timestamp: DateTime.now(),
                     ),
-                    ChatMessageWidget(
-                      text: "안녕하세요! 만나서 반갑습니다.",
-                      isUserMessage: true,
-                      timestamp: DateTime.now(),
-                    ),
+                    // ChatMessageWidget(
+                    //   text: "안녕하세요! 만나서 반갑습니다.",
+                    //   isUserMessage: true,
+                    //   timestamp: DateTime.now(),
+                    // ),
                     // 여기에 더 많은 메시지를 추가할 수 있음
                   ],
                 ),
@@ -88,7 +88,7 @@ class CustomDialog extends StatelessWidget {
                     },
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Color(0xFF9877E2),
+                      backgroundColor: Color(0xFF9877E2).withOpacity(0.7),
                       shape: CircleBorder(),  // 버튼을 원형으로 만듭니다
                       padding: EdgeInsets.all(contextWidth * 0.3),  // 버튼 아이콘 색상을 설정합니다
                     ),
