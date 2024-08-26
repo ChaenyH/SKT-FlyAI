@@ -5,12 +5,20 @@ class ProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
 
     return Container(
-      padding: EdgeInsets.all(contextWidth * 0.5),
+      padding: EdgeInsets.symmetric(
+        horizontal: contextWidth * 0.5,
+        vertical: contextHeight * 0.1,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(16.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -47,12 +55,16 @@ class MenuListSection extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        vertical: contextHeight * 0.3,
         horizontal: contextWidth * 0.7,
+        vertical: contextHeight * 0.2,
       ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(16.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -64,15 +76,15 @@ class MenuListSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildMenuItem('환경설정', onTap: () {}),
-          Divider(),
+          Divider(color: Colors.grey.withOpacity(0.3),),
           _buildMenuItem('로그아웃', onTap: () {}),
-          Divider(),
+          Divider(color: Colors.grey.withOpacity(0.3),),
           _buildMenuItem('질병 정보 등록', onTap: () {}),
-          Divider(),
+          Divider(color: Colors.grey.withOpacity(0.3),),
           _buildMenuItem('가족 등록하기', onTap: () {}),
-          Divider(),
+          Divider(color: Colors.grey.withOpacity(0.3),),
           _buildMenuItem('강아지 추가하기', onTap: () {}),
-          Divider(),
+          Divider(color: Colors.grey.withOpacity(0.3),),
           _buildMenuItem('데이터 내보내기', onTap: () {}),
         ],
       ),
@@ -84,10 +96,13 @@ class MenuListSection extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        padding: EdgeInsets.symmetric(vertical: 12.0),
         child: Text(
           title,
-          style: TextStyle(fontSize: 18.0),
+          style: TextStyle(
+            fontSize: 17.5,
+            color: Colors.black.withOpacity(0.9)
+          ),
         ),
       ),
     );
@@ -99,12 +114,16 @@ class AboutUsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
 
     return Container(
-      padding: EdgeInsets.all(contextWidth * 0.5),
+      padding: EdgeInsets.symmetric(
+        horizontal: contextWidth * 0.5,
+        vertical: contextHeight * 0.1,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(16.0),
         boxShadow: [
           BoxShadow(
             color: Colors.black12,
@@ -113,7 +132,10 @@ class AboutUsSection extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        title: Text('About us'),
+        title: Text(
+          'About us',
+          style: TextStyle(fontSize: 18),
+        ),
         onTap: () {
           // Show about us information
         },

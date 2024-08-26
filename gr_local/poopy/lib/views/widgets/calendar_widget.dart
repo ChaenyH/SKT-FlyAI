@@ -48,8 +48,12 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
         vertical: contextHeight * 0.1,
       ),
       decoration: BoxDecoration(
-        color: Colors.purple.shade200,
+        color: Colors.purple.shade200.withOpacity(0.8),
         borderRadius: BorderRadius.circular(12.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -200,7 +204,7 @@ class CalendarGrid extends StatelessWidget {
             Align(
               alignment: FractionalOffset.topLeft,
               child: Container(
-                padding: EdgeInsets.all(contextWidth * 0.1),
+                padding: EdgeInsets.all(contextWidth * 0.12),
                 child: Text(
                   date.day.toString(),
                   style: TextStyle(

@@ -9,10 +9,14 @@ class BadgesWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(contextWidth * 0.5),
       width: double.infinity,
-      height: contextHeight * 1.5,
+      height: contextHeight * 1.8,
       decoration: BoxDecoration(
-        color: Colors.purple[100],
-        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.purple[200],
+        borderRadius: BorderRadius.circular(16.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,23 +26,48 @@ class BadgesWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
           ),
-          SizedBox(height: contextHeight * 0.1),
+          SizedBox(height: contextHeight * 0.2),
           // 배지 항목 예시
-          Row(
-            children: [
-              Icon(Icons.star, color: Colors.yellow),
-              SizedBox(width: 10),
-              Text('Achievement 1'),
-            ],
-          ),
-          Row(
-            children: [
-              Icon(Icons.star, color: Colors.yellow),
-              SizedBox(width: 10),
-              Text('Achievement 2'),
-            ],
+          Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: contextWidth * 0.4,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: contextHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/badge1.png', // 아이콘 이미지 경로 설정
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Container(
+                  height: contextHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/badge2.png', // 아이콘 이미지 경로 설정
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Container(
+                  height: contextHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/badge3.png', // 아이콘 이미지 경로 설정
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                Container(
+                  height: contextHeight * 0.6,
+                  child: Image.asset(
+                    'assets/images/badge4.png', // 아이콘 이미지 경로 설정
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -59,6 +88,10 @@ class ChatLogWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.purple[200],
         borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
       ),
       child: Center(
         child: Row(
@@ -82,40 +115,43 @@ class ChatLogWidget extends StatelessWidget {
 }
 
 class MiniGalleryWidget extends StatelessWidget {
+  final List<String> imagePaths = [
+    'assets/images/dog1.jpg',
+    'assets/images/dog2.jpg',
+    'assets/images/dog3.jpg',
+  ];
+
   @override
   Widget build(BuildContext context) {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
     final double contextHeight = MediaQuery.of(context).size.height * 0.1;
 
     return Container(
-      padding: EdgeInsets.all(contextWidth * 0.5),
       width: double.infinity,
       height: contextHeight * 1.5,
       decoration: BoxDecoration(
-        color: Colors.purple[300],
-        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.8),
+          width: contextWidth * 0.1,
+        ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Mini Gallery',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 10),
-          // 갤러리 항목 예시
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //   children: [
-          //     Image.asset('assets/images/dog1.png', width: 50, height: 50),
-          //     Image.asset('assets/images/dog2.png', width: 50, height: 50),
-          //     Image.asset('assets/images/dog3.png', width: 50, height: 50),
-          //   ],
-          // ),
-        ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16.0),
+        child: PageView.builder(
+          itemCount: imagePaths.length,
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(imagePaths[index]),
+                  fit: BoxFit.cover, // 이미지를 컨테이너에 맞게 조절
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
