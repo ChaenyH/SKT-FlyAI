@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/views/card_news_screen.dart';
 import 'package:poopy/views/dog_signup_screen.dart';
 import 'package:poopy/views/login_screen.dart';
 import 'package:poopy/views/onboarding_screen.dart';
-import 'package:poopy/views/signup_screen.dart';
+import 'package:poopy/views/user_signup_screen.dart';
 import 'views/home_screen.dart';
 import 'views/calendar_screen.dart';
 import 'views/camera_screen.dart';
@@ -15,9 +14,6 @@ class Routes {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(builder: (_) => OnboardingScreen());
-
-      case '/login':
-        return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/signup':
         return MaterialPageRoute(builder: (_) => UserSignUpScreen());
       case '/dog_signup':

@@ -22,6 +22,11 @@ class NavigationController {
     Navigator.pushReplacementNamed(context, '/home');
   }
 
+  // 홈 화면으로 이동
+  void navigateToCalendar(BuildContext context) {
+    Navigator.pushReplacementNamed(context, '/calendar');
+  }
+
   // 카메라 화면으로 이동
   void navigateToCamera(BuildContext context) {
     Navigator.pushNamed(context, '/camera');
@@ -32,7 +37,7 @@ class NavigationController {
     Navigator.pushNamed(context, '/chatbot');
   }
 
-  // 특정 조건에 따라 강아지 회원가입 화면으로 이동
+  // 강아지 회원가입 화면으로 이동
   void navigateToDogSignup(BuildContext context) {
     Navigator.pushNamed(context, '/dog_signup');
   }

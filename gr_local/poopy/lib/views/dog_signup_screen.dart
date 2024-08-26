@@ -24,44 +24,78 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Dog Sign Up'),
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),  // 뒤로가기 버튼
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(50.0),
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(contextWidth * 1),
           child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/login');
-                      },
-                      child: Text('skip'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 50),
-                TextField(
-                  controller: dogNameController,
-                  decoration: InputDecoration(
-                    labelText: 'Dog Name',
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/poopy_logo.png',
+                width: contextWidth * 3,  // 로고 사이즈 조정
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: contextHeight * 0.1),
+                child: Text(
+                  "강아지 정보 입력",
+                  style: TextStyle(
+                    fontSize: contextWidth * 0.4,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-                TextField(
-                  controller: dogAgeController,
-                  decoration: InputDecoration(
-                    labelText: 'Dog Age',
+              ),
+              SizedBox(height: contextHeight * 0.3),
+              TextField(
+                controller: dogNameController,
+                decoration: InputDecoration(
+                  labelText: '강아지 이름',
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: contextWidth * 0.45,
+                    vertical: contextHeight * 0.15,
                   ),
-                  keyboardType: TextInputType.number,
                 ),
-                // 성별 선택 라디오 버튼
-                Row(
+              ),
+              SizedBox(height: contextHeight * 0.2),
+              TextField(
+                controller: dogAgeController,
+                decoration: InputDecoration(
+                  labelText: '강아지 나이',
+                  border: OutlineInputBorder(),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: contextWidth * 0.45,
+                    vertical: contextHeight * 0.15,
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: contextHeight * 0.3),
+              // 성별 선택 라디오 버튼
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: contextWidth * 0.4,
+                  vertical: contextHeight * 0.05
+                ),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Dog Sex"),
+                    Text(
+                      "강아지 성별",
+                      style: TextStyle(fontSize: contextWidth * 0.4),
+                    ),
+                    SizedBox(width: contextWidth * 0.1,),
                     Row(
                       children: [
                         Radio<String>(
@@ -73,7 +107,7 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
                             });
                           },
                         ),
-                        const Text('Male'),
+                        Text('수컷', style: TextStyle(fontSize: contextWidth * 0.35)),
                       ],
                     ),
                     Row(
@@ -87,38 +121,50 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
                             });
                           },
                         ),
-                        const Text('Female'),
+                        Text('암컷', style: TextStyle(fontSize: contextWidth * 0.35)),
                       ],
                     ),
+                    SizedBox(width: contextWidth * 0.1,)
                   ],
                 ),
-                SwitchListTile(
-                  title: Text('Dog Spayed'),
-                  value: isDogSpayed,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isDogSpayed = value;
-                    });
-                  },
+              ),
+              SwitchListTile(
+                title: Text(
+                  '중성화 여부',
+                  style: TextStyle(fontSize: contextWidth * 0.4),
                 ),
-                SwitchListTile(
-                  title: Text('Dog Pregnant'),
-                  value: isDogPregnant,
-                  onChanged: (bool value) {
-                    setState(() {
-                      isDogPregnant = value;
-                    });
-                  },
+                value: isDogSpayed,
+                onChanged: (bool value) {
+                  setState(() {
+                    isDogSpayed = value;
+                  });
+                },
+                activeColor: Colors.purple,
+              ),
+              SwitchListTile(
+                title: Text(
+                  '임신 여부',
+                  style: TextStyle(fontSize: contextWidth * 0.4),
                 ),
-                SizedBox(height: 50),
-                ElevatedButton(
+                value: isDogPregnant,
+                onChanged: (bool value) {
+                  setState(() {
+                    isDogPregnant = value;
+                  });
+                },
+                activeColor: Colors.purple,
+              ),
+              SizedBox(height: contextHeight * 0.55),
+              SizedBox(
+                width: double.infinity,  // 너비를 최대화
+                child: ElevatedButton(
                   onPressed: () {
                     int dogAge = int.tryParse(dogAgeController.text) ?? 0;
 
                     if (dogSex == null) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text('Please select the dog\'s sex'),
+                          content: Text('강아지의 성별을 입력해주세요!'),
                         ),
                       );
                       return;
@@ -133,11 +179,33 @@ class _DogSignUpScreenState extends State<DogSignUpScreen> {
                       isDogPregnant,
                     );
                   },
-                  child: Text('SIGN UP'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple.withOpacity(0.8),  // 버튼 색상
+                    padding: EdgeInsets.symmetric(vertical: contextHeight * 0.15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),  // 버튼 모서리 곡선
+                    ),
+                    textStyle: TextStyle(fontSize: contextWidth * 0.5),
+                    side: BorderSide(  // 테두리 설정
+                      color: Colors.white.withOpacity(0.9),  // 테두리 색상
+                      width: contextWidth * 0.05,  // 테두리 두께
+                    ),
+                  ),
+                  child: Text(
+                    '등록하기',
+                    style: TextStyle(
+                      fontSize: contextWidth * 0.4,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
-              ]
+              ),
+              SizedBox(height: contextHeight * 0.5),
+            ],
           ),
-        )
+        ),
+      ),
     );
   }
 }

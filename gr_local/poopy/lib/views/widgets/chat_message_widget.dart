@@ -28,7 +28,9 @@ class ChatMessageWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: contextWidth * 0.2),
             child: Text(
-              DateFormat('h:mm a').format(timestamp), // 시간을 h:mm a 포맷으로 표시
+              isUserMessage
+                  ? 'USER  ${DateFormat('h:mm a').format(timestamp)}'
+                  : '${DateFormat('h:mm a').format(timestamp)}  BOT',
               style: TextStyle(
                   color: Colors.grey,
                   fontSize: contextWidth * 0.3
@@ -49,7 +51,6 @@ class ChatMessageWidget extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                // color: isUserMessage ? Colors.black : Colors.white,
                 color: Colors.white,
                 fontSize: contextWidth * 0.35,
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/navigation_controller.dart';
+import 'login_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   final NavigationController _navController = NavigationController();
@@ -55,8 +56,7 @@ class OnboardingScreen extends StatelessWidget {
             // "시작하기" 버튼
             ElevatedButton(
               onPressed: () {
-                // 시작하기 버튼 클릭 시 로그인 화면으로 이동
-                _navController.navigateToLogin(context);
+                showCustomLoginDialog(context);  // 로그인 다이얼로그 호출
               },
               style: ElevatedButton.styleFrom(
                 padding: EdgeInsets.only(
@@ -78,12 +78,16 @@ class OnboardingScreen extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.arrow_forward),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: Colors.black.withOpacity(0.8),
+                  ),
                   SizedBox(width: contextWidth * 0.3,),
                   Text(
                     'Let\'s Start!',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
+                      color: Colors.black.withOpacity(0.8),
                     ),
                   ),
                 ],
@@ -102,7 +106,7 @@ class OnboardingScreen extends StatelessWidget {
           ],
         ),
       ),
-      backgroundColor: Color(0xFF9B7BC1),  // 배경 색상
+      backgroundColor: Color(0xFFCE94D8),  // 배경 색상
     );
   }
 }

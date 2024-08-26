@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:poopy/views/widgets/chat_message_widget.dart';
 
 class CustomDialog extends StatelessWidget {
@@ -27,9 +26,10 @@ class CustomDialog extends StatelessWidget {
                 children: [
                   SizedBox(width: contextWidth * 0.8),
                   Text(
-                    'Today ${DateFormat('h:mm a').format(DateTime.now())}',
+                    // 'Today ${DateFormat('h:mm a').format(DateTime.now())}',
+                    'PuPpyT',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: contextWidth * 0.4,
                       fontWeight: FontWeight.w600,
                     ),
                     textAlign: TextAlign.center,
@@ -42,7 +42,6 @@ class CustomDialog extends StatelessWidget {
                   ),
                 ],
               ),
-              // SizedBox(height: contextHeight * 0.1),
               // 채팅 메시지 리스트
               Expanded(
                 child: ListView(
@@ -64,23 +63,35 @@ class CustomDialog extends StatelessWidget {
               SizedBox(height: contextHeight * 0.1),
               // 메시지 입력 필드
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Expanded(
+                  Container(
+                    width: contextWidth * 6.5,
+                    height: contextHeight * 0.6,
                     child: TextField(
                       decoration: InputDecoration(
-                        hintText: "메시지를 입력하세요...",
-                        hintStyle: TextStyle(color: Color(0xFFC2C2C2)),
+                        hintText: " 메시지를 입력하세요...",
+                        hintStyle: TextStyle(
+                          color: Color(0xFFC2C2C2),
+                          fontSize: contextWidth * 0.35
+                        ),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(25.0),
                         ),
                       ),
                     ),
                   ),
-                  SizedBox(width: contextWidth * 0.2),
+                  SizedBox(width: contextWidth * 0.1),
                   ElevatedButton(
                     onPressed: () {
                       // 메시지 전송 로직 추가
                     },
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Color(0xFF9877E2),
+                      shape: CircleBorder(),  // 버튼을 원형으로 만듭니다
+                      padding: EdgeInsets.all(contextWidth * 0.3),  // 버튼 아이콘 색상을 설정합니다
+                    ),
                     child: Icon(Icons.send),
                   ),
                 ],
