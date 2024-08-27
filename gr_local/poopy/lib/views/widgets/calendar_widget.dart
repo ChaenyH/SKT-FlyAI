@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
+
 
 class CustomCalendarWidget extends StatefulWidget {
   final Function(DateTime) onDateChanged;
@@ -41,45 +45,52 @@ class _CustomCalendarWidgetState extends State<CustomCalendarWidget> {
     final double contextHeight = MediaQuery.of(context).size.height * 0.1;
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
 
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: contextWidth * 0.2),
-      padding: EdgeInsets.symmetric(
-        horizontal: contextWidth * 0.3,
-        vertical: contextHeight * 0.1,
-      ),
-      decoration: BoxDecoration(
-        color: Color(0xFFCE94D8).withOpacity(0.7),
-        borderRadius: BorderRadius.circular(12.0),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.8),
-          width: contextWidth * 0.1,
-        ),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: contextHeight * 0.05),
-          CalendarHeader(
-            focusedDate: _focusedDate,
-            onLeftArrowTap: _onLeftArrowTap,
-            onRightArrowTap: _onRightArrowTap,
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: contextWidth * 0.2),
+          padding: EdgeInsets.symmetric(
+            horizontal: contextWidth * 0.3,
+            vertical: contextHeight * 0.1,
           ),
-          DayLabels(), // 요일 라벨 추가
-          SizedBox(height: contextHeight * 0.2),
-          Container(
-            height: contextHeight * 3.6, // 고정된 높이 설정
-            child: CalendarGrid(
-              focusedDate: _focusedDate,
-              selectedDate: _selectedDate,
-              onDateSelected: _onDateSelected,
-              imagesList: widget.imagesList,
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(12.0),
+            border: Border.all(
+              color: Colors.white.withOpacity(0.4),
+              width: 1.5,
             ),
           ),
-        ],
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: contextHeight * 0.05),
+              CalendarHeader(
+                focusedDate: _focusedDate,
+                onLeftArrowTap: _onLeftArrowTap,
+                onRightArrowTap: _onRightArrowTap,
+              ),
+              DayLabels(), // 요일 라벨 추가
+              SizedBox(height: contextHeight * 0.2),
+              Container(
+                height: contextHeight * 3.6, // 고정된 높이 설정
+                child: CalendarGrid(
+                  focusedDate: _focusedDate,
+                  selectedDate: _selectedDate,
+                  onDateSelected: _onDateSelected,
+                  imagesList: widget.imagesList,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
 }
+
+
 
 class CalendarHeader extends StatelessWidget {
   final DateTime focusedDate;
@@ -115,6 +126,13 @@ class CalendarHeader extends StatelessWidget {
               fontSize: contextHeight * 0.2,
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              shadows: [
+                Shadow(
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 4.0,
+                  color: Colors.black.withOpacity(0.15),
+                ),
+              ],
             ),
           ),
           IconButton(
@@ -149,6 +167,13 @@ class DayLabels extends StatelessWidget {
                 fontSize: contextWidth * 0.3,
                 fontWeight: FontWeight.w600,
                 color: Colors.white.withOpacity(0.9),
+                shadows: [
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 2.0,
+                    color: Colors.black.withOpacity(0.15), // Subtle shadow for glassmorphism
+                  ),
+                ],
               ),
             ),
           ),
@@ -157,6 +182,8 @@ class DayLabels extends StatelessWidget {
     );
   }
 }
+
+
 
 class CalendarGrid extends StatelessWidget {
   final DateTime focusedDate;
@@ -281,6 +308,8 @@ class CalendarGrid extends StatelessWidget {
     );
   }
 }
+
+
 
 class ImagesData {
   final String? pooColor;

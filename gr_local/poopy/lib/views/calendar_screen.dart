@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poopy/views/rive_background.dart';
 import 'package:poopy/views/widgets/calendar_widget.dart';
 import 'package:poopy/views/widgets/draggable_date_info_panel.dart';
 import 'package:poopy/views/widgets/expandable_fab.dart';
@@ -15,7 +16,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   void initState() {
     super.initState();
-    // 초기화 시 현재 날짜에 대한 이벤트를 가져옵니다.
     _events = _fetchEventsForDate(_selectedDate);
   }
 
@@ -27,59 +27,77 @@ class _CalendarScreenState extends State<CalendarScreen> {
   }
 
   List<Map<String, dynamic>> _fetchEventsForDate(DateTime date) {
-    // 여기서는 날짜를 바탕으로 임의의 데이터를 생성하는 예시입니다.
-    // 실제 구현에서는 서버나 로컬 데이터베이스에서 데이터를 가져오는 로직이 필요할 수 있습니다.
     List<Map<String, dynamic>> events = [
       {
         "title": "건강한 똥!",
         "bristol": 4,
         "colorName": "Brown",
         "blood": "X",
-        "color": Color(0xFFB3F2BB), // 초록색
-        "icon": Icons.thumb_up, // 엄지손가락 아이콘
+        "color": Color(0xFFB3F2BB).withOpacity(0.8),
+        "icon": Icons.thumb_up,
       },
       {
         "title": "주의가 필요해요",
         "bristol": 2,
         "colorName": "Green",
         "blood": "X",
-        "color": Color(0xFFFFEC9A), // 노란색
-        "icon": Icons.warning, // 경고 아이콘
+        "color": Color(0xFFFFEC9A).withOpacity(0.8),
+        "icon": Icons.warning,
       },
       {
         "title": "빠른 시일 내에 병원에 방문",
         "bristol": 7,
         "colorName": "Black",
         "blood": "O",
-        "color": Color(0xFFFFC9C9), // 빨간색
-        "icon": Icons.local_hospital, // 병원 아이콘
+        "color": Color(0xFFFFC9C9).withOpacity(0.8),
+        "icon": Icons.local_hospital,
       },
     ];
 
-    // 실제 이벤트가 날짜에 따라 달라지도록 로직을 추가할 수 있음
     return events;
   }
 
   @override
   Widget build(BuildContext context) {
+    final double contextHeight = MediaQuery.of(context).size.height * 0.1;
+    final double contextWidth = MediaQuery.of(context).size.width * 0.1;
+
     return Scaffold(
-      appBar: AppBar(
-        // title: Text('CalendarScreen'),
-      ),
       body: Stack(
         children: [
+          const RiveBackground(blurSigmaX: 60, blurSigmaY: 40), // RiveBackground 추가
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // 상단 뒤로가기 버튼
+              Padding(
+                padding: EdgeInsets.only(
+                  top: contextHeight * 0.4,
+                  bottom: contextHeight * 0.1,
+                  left: contextWidth * 0.2
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: Colors.white),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+
               CustomCalendarWidget(
                 onDateChanged: _onDateChanged,
-                imagesList: generateDummyImagesList(), // 임의 더미 데이터 사용
+                imagesList: generateDummyImagesList(),
               ),
-              // 여기에 선택된 날짜의 간단한 정보 등을 표시할 수 있음
             ],
           ),
           DraggableDateInfoPanel(
             selectedDate: _selectedDate,
-            events: _events, // _events는 초기화 시 설정된 현재 날짜의 이벤트를 포함합니다.
+            events: _events,
           ),
         ],
       ),

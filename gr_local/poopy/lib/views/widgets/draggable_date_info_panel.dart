@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class DraggableDateInfoPanel extends StatelessWidget {
@@ -21,43 +22,50 @@ class DraggableDateInfoPanel extends StatelessWidget {
       snap: true,
       snapSizes: [0.12, 0.5, 0.98],
       builder: (BuildContext context, ScrollController scrollController) {
-        return Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black26,
-                blurRadius: 10,
+        return ClipRRect(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.5),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                border: Border.all(
+                  color: Colors.white.withOpacity(0.4),
+                  width: 1.5,
+                ),
               ),
-            ],
-          ),
-          child: SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              children: [
-                Center(
-                  child: Container(
-                    width: contextWidth * 1.5,
-                    height: contextHeight * 0.05,
-                    margin: EdgeInsets.only(top: contextHeight * 0.2, bottom: contextHeight * 0.1,),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(30),
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  children: [
+                    Center(
+                      child: Container(
+                        width: contextWidth * 1.5,
+                        height: contextHeight * 0.05,
+                        margin: EdgeInsets.only(
+                          top: contextHeight * 0.2,
+                          bottom: contextHeight * 0.1,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
                     ),
-                  ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        vertical: contextHeight * 0.1,
+                        horizontal: contextWidth * 0.2,
+                      ),
+                      child: SelectedDateInformation(
+                        date: selectedDate,
+                        events: events,
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    vertical: contextHeight * 0.1,
-                    horizontal: contextWidth * 0.2,
-                  ),
-                  child: SelectedDateInformation(
-                    date: selectedDate,
-                    events: events,
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         );
@@ -92,6 +100,14 @@ class SelectedDateInformation extends StatelessWidget {
               style: TextStyle(
                 fontSize: contextWidth * 0.5,
                 fontWeight: FontWeight.w500,
+                color: Colors.black.withOpacity(0.7),
+                shadows: [
+                  Shadow(
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 6.0,
+                    color: Colors.black.withOpacity(0.15), // Subtle shadow for glassmorphism
+                  ),
+                ],
               ),
             ),
           ),
@@ -99,7 +115,7 @@ class SelectedDateInformation extends StatelessWidget {
         Container(
           height: contextHeight * 7.5,
           child: events.isNotEmpty
-          ? ListView.builder(
+            ? ListView.builder(
             itemCount: events.length,
             itemBuilder: (context, index) {
               return Container(
@@ -111,7 +127,10 @@ class SelectedDateInformation extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: events[index]['color'],
                   borderRadius: BorderRadius.circular(16.0),
-                  border: Border.all(color: Colors.white, width: contextWidth * 0.05)
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.4),
+                    width: 1.5,
+                  ),
                 ),
                 child: ListTile(
                   leading: Padding(
@@ -125,8 +144,8 @@ class SelectedDateInformation extends StatelessWidget {
                   title: Text(
                     events[index]['title'],
                     style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.black
-                    ),),
+                        fontWeight: FontWeight.bold, color: Colors.black),
+                  ),
                   subtitle: Text(
                     'Bristol: lv. ${events[index]['bristol']}\nColor: ${events[index]['colorName']},  Blood: ${events[index]['blood']}',
                     style: TextStyle(color: Colors.black),
