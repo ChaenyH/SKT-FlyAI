@@ -10,26 +10,23 @@ void showCustomLoginDialog(BuildContext context) {
     context: context,
     barrierColor: Colors.black.withOpacity(0.5),  // 다이얼로그 외부의 반투명 배경
     builder: (_) => Center(
-      child: Container(
-        height: contextHeight * 8,
-        margin: EdgeInsets.symmetric(
-          // vertical: contextHeight * 1.5,
-          horizontal: contextWidth * 0.5,
-        ),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: Colors.white.withOpacity(0.5),
-            width: 2.0,
-          ),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20.0),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: Container(
+            height: contextHeight * 7,
+            margin: EdgeInsets.symmetric(horizontal: contextWidth * 0.5),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.2), // 반투명 배경색 적용
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.white.withOpacity(0.4), // 흐린 경계선
+                width: 2.0,
+              ),
+            ),
             child: Scaffold(
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.transparent, // 투명한 배경
               body: LoginScreen(),  // LoginScreen을 여기에 삽입
             ),
           ),
@@ -38,6 +35,8 @@ void showCustomLoginDialog(BuildContext context) {
     ),
   );
 }
+
+
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();

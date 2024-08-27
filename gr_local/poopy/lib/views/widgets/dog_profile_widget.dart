@@ -11,20 +11,34 @@ class DogProfileWidget extends StatelessWidget {
 
     return Row(
       children: [
-        CircleAvatar(
-          backgroundImage: AssetImage('assets/images/dog_profile_1.png'), // 이미지 변경
-          radius: 30,
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.white.withOpacity(0.8), // 테두리 색상
+              width: 2.5, // 테두리 두께
+            ),
+          ),
+          child: CircleAvatar(
+            backgroundImage: AssetImage('assets/images/dog_profile_1.png'), // 이미지 변경
+            radius: 30,
+          ),
         ),
         SizedBox(width: contextWidth * 0.4),
         Text(
           '오뎅이',
-          style: TextStyle(fontSize: contextWidth * 0.5, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: contextWidth * 0.5,
+            fontWeight: FontWeight.bold,
+            color: Colors.white.withOpacity(0.9),
+          ),
         ),
         IconButton(
           icon: Icon(
             Icons.arrow_drop_down_rounded,
             size: contextWidth * 1,
-          ),  // 세로 점 3개 아이콘
+            color: Colors.white.withOpacity(0.9),
+          ),
           onPressed: () {
             _showBottomSheet(context);
           },
