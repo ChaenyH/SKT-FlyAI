@@ -46,6 +46,13 @@ class StatusCardWidget extends StatelessWidget {
                       color: Colors.white,
                       fontSize: contextWidth * 0.4,
                       fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          offset: Offset(2.0, 2.0),
+                          blurRadius: 4.0,
+                          color: Colors.black.withOpacity(0.15),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -155,7 +162,7 @@ class HomeActionButtonWidget extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.2),
+            color: Colors.white.withOpacity(0.3),
             borderRadius: BorderRadius.circular(16.0),
             border: Border.all(
               color: Colors.white.withOpacity(0.4),
@@ -237,6 +244,13 @@ class CardNewsWidget extends StatelessWidget {
               fontSize: contextWidth * 0.4,
               fontWeight: FontWeight.w600,
               color: Colors.white,
+              shadows: [
+                Shadow(
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 4.0,
+                  color: Colors.black.withOpacity(0.15),
+                ),
+              ],
             ),
           ),
         ),

@@ -31,6 +31,13 @@ class DogProfileWidget extends StatelessWidget {
             fontSize: contextWidth * 0.5,
             fontWeight: FontWeight.bold,
             color: Colors.white.withOpacity(0.9),
+            shadows: [
+              Shadow(
+                offset: Offset(2.0, 2.0),
+                blurRadius: 4.0,
+                color: Colors.black.withOpacity(0.25),
+              ),
+            ],
           ),
         ),
         IconButton(

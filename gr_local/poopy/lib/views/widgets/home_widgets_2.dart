@@ -17,11 +17,11 @@ class BadgesWidget extends StatelessWidget {
           width: double.infinity,
           height: contextHeight * 1.8,
           decoration: BoxDecoration(
-            color: Color(0xFFCE94D8).withOpacity(0.3),
+            color: Colors.white.withOpacity(0.2),
             borderRadius: BorderRadius.circular(16.0),
             border: Border.all(
-              color: Colors.white.withOpacity(0.5),
-              width: contextWidth * 0.05,
+              color: Colors.white.withOpacity(0.4),
+              width: 1.5,
             ),
           ),
           child: Column(
@@ -106,11 +106,11 @@ class ChatLogWidget extends StatelessWidget {
             width: double.infinity,
             height: contextHeight * 1,
             decoration: BoxDecoration(
-              color: Colors.purple[200]?.withOpacity(0.3),
+              color: Colors.white.withOpacity(0.3),
               borderRadius: BorderRadius.circular(20.0),
               border: Border.all(
-                color: Colors.white.withOpacity(0.5),
-                width: contextWidth * 0.05,
+                color: Colors.white.withOpacity(0.4),
+                width: 1.5,
               ),
             ),
             child: Center(
