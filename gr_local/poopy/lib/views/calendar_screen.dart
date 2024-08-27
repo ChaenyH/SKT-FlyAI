@@ -65,7 +65,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          const RiveBackground(blurSigmaX: 60, blurSigmaY: 40), // RiveBackground 추가
+          const StalledBackground2(), // RiveBackground 추가
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -76,16 +76,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   bottom: contextHeight * 0.1,
                   left: contextWidth * 0.2
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      icon: Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ),
 

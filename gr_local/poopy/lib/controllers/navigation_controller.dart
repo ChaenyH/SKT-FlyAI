@@ -7,49 +7,49 @@
 import 'package:flutter/material.dart';
 
 class NavigationController {
-  // 로그인 화면으로 이동
-  void navigateToLogin(BuildContext context) {
-    Navigator.pushNamed(context, '/login');
-  }
+    // 로그인 화면으로 이동
+    void navigateToLogin(BuildContext context) {
+      Navigator.pushNamed(context, '/login');
+    }
 
-  // 회원가입 화면으로 이동
-  void navigateToSignup(BuildContext context) {
-    Navigator.pushNamed(context, '/signup');
-  }
+    // 회원가입 화면으로 이동
+    void navigateToSignup(BuildContext context) {
+      Navigator.pushNamed(context, '/signup');
+    }
 
-  // 홈 화면으로 이동
-  void navigateToHome(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/home');
-  }
+    // 홈 화면으로 이동
+    void navigateToHome(BuildContext context) {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
 
-  // 홈 화면으로 이동
-  void navigateToCalendar(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/calendar');
-  }
+    // 홈 화면으로 이동
+    void navigateToCalendar(BuildContext context) {
+      Navigator.pushReplacementNamed(context, '/calendar');
+    }
 
-  // 카메라 화면으로 이동
-  void navigateToCamera(BuildContext context) {
-    Navigator.pushNamed(context, '/camera');
-  }
+    // 카메라 화면으로 이동
+    void navigateToCamera(BuildContext context) {
+      Navigator.pushNamed(context, '/camera');
+    }
 
-  // 챗봇 화면으로 이동
-  void navigateToChatbot(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/chatbot');
-  }
+    // 챗봇 화면으로 이동
+    void navigateToChatbot(BuildContext context) {
+      Navigator.pushReplacementNamed(context, '/chatbot');
+    }
 
 
-  // 챗봇 화면으로 이동
-  void navigateToChatlog(BuildContext context) {
-    Navigator.pushNamed(context, '/chatlog');
-  }
+    // 챗봇 화면으로 이동
+    void navigateToChatlog(BuildContext context) {
+      Navigator.pushNamed(context, '/chatlog');
+    }
 
-  // 강아지 회원가입 화면으로 이동
-  void navigateToDogSignup(BuildContext context) {
-    Navigator.pushNamed(context, '/dog_signup');
-  }
+    // 강아지 회원가입 화면으로 이동
+    void navigateToDogSignup(BuildContext context) {
+      Navigator.pushNamed(context, '/dog_signup');
+    }
 
-  // 화면 간의 인자 전달 가능 예시
-  void navigateToPhotoPreview(BuildContext context) {
-    Navigator.pushNamed(context, '/photo_preview');
+    // 화면 간의 인자 전달 가능 예시
+    void navigateToPhotoPreview(BuildContext context) {
+      Navigator.pushNamed(context, '/photo_preview');
   }
 }

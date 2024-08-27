@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const RiveBackground(blurSigmaX: 60, blurSigmaY: 40), // RiveBackground 추가
+          const StalledBackground3(),
           Column(
             children: [
               // 상단에 고정된 DogProfileWidget

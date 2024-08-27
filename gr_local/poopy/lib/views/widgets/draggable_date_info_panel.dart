@@ -16,11 +16,11 @@ class DraggableDateInfoPanel extends StatelessWidget {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
 
     return DraggableScrollableSheet(
-      initialChildSize: 0.5,
+      initialChildSize: 0.4,
       minChildSize: 0.12,
-      maxChildSize: 0.98,
+      maxChildSize: 0.9,
       snap: true,
-      snapSizes: [0.12, 0.5, 0.98],
+      snapSizes: [0.12, 0.4, 0.9],
       builder: (BuildContext context, ScrollController scrollController) {
         return ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -94,7 +94,7 @@ class SelectedDateInformation extends StatelessWidget {
       children: [
         Center(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
+            padding: EdgeInsets.symmetric(vertical: contextHeight * 0.1,),
             child: Text(
               '${date.day} ${_monthName(date.month)} ${date.year}',
               style: TextStyle(
