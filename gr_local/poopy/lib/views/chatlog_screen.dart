@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:poopy/views/rive_background.dart';
 import 'package:poopy/views/widgets/chat_message_widget.dart';
 
 
@@ -83,78 +84,98 @@ class _ChatLogScreenState extends State<ChatLogScreen> {
     DateTime? previousDate;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('챗로그'),
-      ),
-      backgroundColor: Color(0xFFE9E0F0),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.7), // 반투명 배경색
-          borderRadius: BorderRadius.circular(16.0), // 모서리 둥글게
-          border: Border.all(
-            color: Colors.white.withOpacity(1), // 테두리 색상
-            width: contextWidth * 0.08,
-          ),
-        ),
-        margin: EdgeInsets.only(
-          top: contextHeight * 0.3,
-          bottom: contextHeight * 1.3,
-          left: contextWidth * 0.3,
-          right: contextWidth * 0.3,
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: contextWidth * 0.25,
-        ),
-        child: ListView.builder(
-          controller: _scrollController,
-          itemCount: messages.length,
-          itemBuilder: (context, index) {
-            DateTime currentDate = messages[index]['timestamp'];
-            bool showDate = previousDate == null ||
-                previousDate!.day != currentDate.day ||
-                previousDate!.month != currentDate.month ||
-                previousDate!.year != currentDate.year;
-
-            previousDate = currentDate;
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                if (showDate)
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: contextHeight * 0.4,
-                    ),
-                    child: Center(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Color(0xFFABA8A8).withOpacity(0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: contextWidth * 0.25,
-                          vertical: contextHeight * 0.08,
-                        ),
-                        child: Text(
-                          DateFormat(' yyyy년 MM월 dd일 ').format(currentDate),
-                          style: TextStyle(
-                            fontSize: contextWidth * 0.3,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ChatMessageWidget(
-                  text: messages[index]['message'],
-                  isUserMessage: messages[index]['role'] == 'user',
-                  timestamp: messages[index]['timestamp'],
+      body: Stack(
+        children: [
+          const StalledBackground1(), // RiveBackground 추가
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // 상단 뒤로가기 버튼
+              Padding(
+                padding: EdgeInsets.only(
+                    top: contextHeight * 0.4,
+                    bottom: contextHeight * 0.1,
+                    left: contextWidth * 0.2
                 ),
-              ],
-            );
-          },
-        ),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.white),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+
+              Container(
+                height: contextHeight * 8,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.7), // 반투명 배경색
+                  borderRadius: BorderRadius.circular(16.0), // 모서리 둥글게
+                  border: Border.all(
+                    color: Colors.white.withOpacity(1), // 테두리 색상
+                    width: contextWidth * 0.08,
+                  ),
+                ),
+                margin: EdgeInsets.symmetric(
+                  horizontal: contextWidth * 0.3,
+                  vertical: contextHeight * 0.1,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: contextWidth * 0.25,
+                ),
+                child: ListView.builder(
+                  controller: _scrollController,
+                  itemCount: messages.length,
+                  itemBuilder: (context, index) {
+                    DateTime currentDate = messages[index]['timestamp'];
+                    bool showDate = previousDate == null ||
+                        previousDate!.day != currentDate.day ||
+                        previousDate!.month != currentDate.month ||
+                        previousDate!.year != currentDate.year;
+
+                    previousDate = currentDate;
+
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        if (showDate)
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: contextHeight * 0.4,
+                            ),
+                            child: Center(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFABA8A8).withOpacity(0.5),
+                                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: contextWidth * 0.25,
+                                  vertical: contextHeight * 0.08,
+                                ),
+                                child: Text(
+                                  DateFormat(' yyyy년 MM월 dd일 ').format(currentDate),
+                                  style: TextStyle(
+                                    fontSize: contextWidth * 0.3,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ChatMessageWidget(
+                          text: messages[index]['message'],
+                          isUserMessage: messages[index]['role'] == 'user',
+                          timestamp: messages[index]['timestamp'],
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:poopy/views/rive_background.dart';
 import '../controllers/navigation_controller.dart';
