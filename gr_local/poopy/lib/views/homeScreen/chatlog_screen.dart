@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:poopy/views/rive_background.dart';
-import 'package:poopy/views/widgets/chat_message_widget.dart';
+import 'package:poopy/views/chatbotScreen/components/chat_message_widget.dart';
 
 
 class ChatLogScreen extends StatefulWidget {

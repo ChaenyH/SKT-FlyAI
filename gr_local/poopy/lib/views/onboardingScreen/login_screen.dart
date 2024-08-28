@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controllers/navigation_controller.dart';
+import '../../controllers/navigation_controller.dart';
 import 'dart:ui';  // for ImageFilter
 
 
@@ -61,6 +61,7 @@ class LoginScreen extends StatelessWidget {
               top: contextHeight * 0.6,
               bottom: MediaQuery.of(context).viewInsets.bottom + contextHeight * 0.5,
             ),
+
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,

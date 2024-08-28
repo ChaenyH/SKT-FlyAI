@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../chatbot_dialog.dart';
+import '../../chatbotScreen/chatbot_dialog.dart';
 
 class PhotoPreviewAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override

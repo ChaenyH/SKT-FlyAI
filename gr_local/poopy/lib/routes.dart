@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/views/chatlog_screen.dart';
-import 'package:poopy/views/dog_signup_screen.dart';
-import 'package:poopy/views/onboarding_screen.dart';
-import 'package:poopy/views/user_signup_screen.dart';
-import 'views/home_screen.dart';
-import 'views/calendar_screen.dart';
-import 'views/camera_screen.dart';
-import 'views/mypage_screen.dart';
+import 'package:poopy/views/homeScreen/chatlog_screen.dart';
+import 'package:poopy/views/onboardingScreen/dog_signup_screen.dart';
+import 'package:poopy/views/onboardingScreen/onboarding_screen.dart';
+import 'package:poopy/views/onboardingScreen/user_signup_screen.dart';
+import 'views/homeScreen/home_screen.dart';
+import 'views/calendarScreen/calendar_screen.dart';
+import 'views/cameraScreen/camera_screen.dart';
+import 'views/mypageScreen/mypage_screen.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {

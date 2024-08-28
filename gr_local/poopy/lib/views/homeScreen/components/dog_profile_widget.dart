@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../controllers/navigation_controller.dart';
+import '../../../controllers/navigation_controller.dart';
 
 class DogProfileWidget extends StatelessWidget {
   final NavigationController _navController = NavigationController();

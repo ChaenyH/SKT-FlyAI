@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import '../photo_preview_and_upload_screen.dart';
+import '../../homeScreen/photo_preview_and_upload_screen.dart';
 
 class CameraPreviewWidget extends StatefulWidget {
   final CameraController controller;

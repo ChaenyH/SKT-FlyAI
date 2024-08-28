@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poopy/views/rive_background.dart';
-import 'package:poopy/views/widgets/dog_profile_widget.dart';
-import 'package:poopy/views/widgets/expandable_fab.dart';
-import 'package:poopy/views/widgets/home_widgets_1.dart';
-import 'package:poopy/views/widgets/home_widgets_2.dart';
+import 'package:poopy/views/homeScreen/components/dog_profile_widget.dart';
+import 'package:poopy/views/expandable_fab.dart';
+import 'package:poopy/views/homeScreen/components/home_widgets_1.dart';
+import 'components/home_widgets_2.dart';
 
 class HomeScreen extends StatelessWidget {
   final PageController _pageController = PageController();

@@ -1,6 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
+
+
 class DraggableDateInfoPanel extends StatelessWidget {
   final DateTime selectedDate;
   final List<Map<String, dynamic>> events;
@@ -37,22 +39,29 @@ class DraggableDateInfoPanel extends StatelessWidget {
               ),
               child: SingleChildScrollView(
                 controller: scrollController,
+
                 child: Column(
                   children: [
+
                     Center(
                       child: Container(
                         width: contextWidth * 1.5,
-                        height: contextHeight * 0.05,
+                        height: 5,
                         margin: EdgeInsets.only(
-                          top: contextHeight * 0.2,
+                          top: 15,
                           bottom: contextHeight * 0.1,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(0.5),
+                          color: Colors.white.withOpacity(0.4),
                           borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.1),
+                            width: 1.5,
+                          ),
                         ),
                       ),
                     ),
+
                     Container(
                       padding: EdgeInsets.symmetric(
                         vertical: contextHeight * 0.1,
@@ -63,6 +72,7 @@ class DraggableDateInfoPanel extends StatelessWidget {
                         events: events,
                       ),
                     ),
+
                   ],
                 ),
               ),
@@ -73,6 +83,8 @@ class DraggableDateInfoPanel extends StatelessWidget {
     );
   }
 }
+
+
 
 class SelectedDateInformation extends StatelessWidget {
   final DateTime date;
@@ -90,8 +102,10 @@ class SelectedDateInformation extends StatelessWidget {
     final double contextWidth = MediaQuery.of(context).size.width * 0.1;
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
+
+        // 오늘의 날짜 표시
         Center(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: contextHeight * 0.1,),
@@ -112,12 +126,16 @@ class SelectedDateInformation extends StatelessWidget {
             ),
           ),
         ),
+
         Container(
-          height: contextHeight * 7.5,
+          alignment: Alignment.topCenter,
+          height: contextHeight * 9,
+
           child: events.isNotEmpty
-            ? ListView.builder(
+          ? ListView.builder(
             itemCount: events.length,
             itemBuilder: (context, index) {
+
               return Container(
                 margin: EdgeInsets.symmetric(
                   vertical: contextHeight * 0.1,
@@ -132,7 +150,9 @@ class SelectedDateInformation extends StatelessWidget {
                     width: 1.5,
                   ),
                 ),
+
                 child: ListTile(
+
                   leading: Padding(
                     padding: EdgeInsets.symmetric(horizontal: contextWidth * 0.3),
                     child: Icon(
@@ -141,29 +161,39 @@ class SelectedDateInformation extends StatelessWidget {
                       size: contextWidth * 0.8,
                     ),
                   ),
+
                   title: Text(
                     events[index]['title'],
                     style: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.black),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
+
                   subtitle: Text(
                     'Bristol: lv. ${events[index]['bristol']}\nColor: ${events[index]['colorName']},  Blood: ${events[index]['blood']}',
                     style: TextStyle(color: Colors.black),
                   ),
+
                 ),
+
               );
             },
           )
+
           : Center(
             child: Text(
               '기록이 없습니다.',
-              style: TextStyle(color: Colors.grey),
+              style: TextStyle(color: Colors.black),
             ),
           ),
+
         ),
       ],
     );
   }
+
+
 
   String _monthName(int month) {
     const months = [
@@ -172,4 +202,5 @@ class SelectedDateInformation extends StatelessWidget {
     ];
     return months[month - 1];
   }
+
 }

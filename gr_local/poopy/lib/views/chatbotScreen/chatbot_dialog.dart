@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/views/widgets/chat_message_widget.dart';
+import 'package:poopy/views/chatbotScreen/components/chat_message_widget.dart';
 
 class CustomDialog extends StatelessWidget {
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:poopy/views/widgets/photo_preview_widgets.dart';
+import '../../controllers/navigation_controller.dart';
+import '../cameraScreen/components/photo_preview_widgets.dart';
 
-import '../controllers/navigation_controller.dart';
+
 
 class PhotoPreviewAndUploadScreen extends StatelessWidget {
   final String imagePath;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../controllers/api_service.dart';
-import '../controllers/navigation_controller.dart';
+import '../../controllers/api_service.dart';
+import '../../controllers/navigation_controller.dart';
 
 class UserSignUpScreen extends StatefulWidget {
   @override

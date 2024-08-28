@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:poopy/views/rive_background.dart';
-import '../controllers/navigation_controller.dart';
+import '../../controllers/navigation_controller.dart';
 import 'login_screen.dart';
+
+
 
 class OnboardingScreen extends StatelessWidget {
   final NavigationController _navController = NavigationController();
@@ -15,7 +17,9 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+
           RiveBackground(blurSigmaX: 20, blurSigmaY: 15), // RiveBackground 추가
+
           Center(
             child: Container(
               padding: EdgeInsets.all(contextWidth * 0.5),
@@ -24,7 +28,9 @@ class OnboardingScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+
                   SizedBox(height: contextHeight * 1.3),
+
                   // 글라스모피즘 스타일의 로고 컨테이너
                   ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
@@ -65,6 +71,7 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: contextHeight * 1.5),
+
                   // 글라스모피즘 스타일의 "시작하기" 버튼
                   ClipRRect(
                     borderRadius: BorderRadius.circular(30.0),
@@ -112,6 +119,7 @@ class OnboardingScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: contextHeight * 1),
+
                   // 하단 크레딧 텍스트
                   Text(
                     'SK Telecom FLY AI Challengers\n© 2024 Team Golden Retriever. All rights reserved',

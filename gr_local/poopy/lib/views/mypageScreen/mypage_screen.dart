@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:poopy/views/rive_background.dart';
-import 'package:poopy/views/widgets/expandable_fab.dart';
-import 'package:poopy/views/widgets/mypage_widgets.dart';
+import 'package:poopy/views/expandable_fab.dart';
+import 'package:poopy/views/mypageScreen/components/mypage_widgets.dart';
 
 class MyPageScreen extends StatelessWidget {
   @override

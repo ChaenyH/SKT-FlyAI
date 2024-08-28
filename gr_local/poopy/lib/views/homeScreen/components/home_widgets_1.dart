@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../controllers/navigation_controller.dart';
+import '../../../controllers/navigation_controller.dart';
 import '../card_news_screen.dart';
 import 'dart:ui';
 

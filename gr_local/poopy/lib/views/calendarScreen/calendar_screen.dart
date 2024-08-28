@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:poopy/views/rive_background.dart';
-import 'package:poopy/views/widgets/calendar_widget.dart';
-import 'package:poopy/views/widgets/draggable_date_info_panel.dart';
-import 'package:poopy/views/widgets/expandable_fab.dart';
+import 'package:poopy/views/calendarScreen/components/calendar_widget.dart';
+import 'package:poopy/views/expandable_fab.dart';
+
+import 'components/draggable_date_info_panel.dart';
 
 class CalendarScreen extends StatefulWidget {
   @override

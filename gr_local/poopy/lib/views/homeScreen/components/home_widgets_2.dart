@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../controllers/navigation_controller.dart';
+import '../../../controllers/navigation_controller.dart';
 
 class BadgesWidget extends StatelessWidget {
   @override
